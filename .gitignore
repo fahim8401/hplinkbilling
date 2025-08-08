@@ -1,0 +1,69 @@
+# Laravel generated files
+/vendor/
+/node_modules/
+/public/js/
+/public/css/
+/public/mix-manifest.json
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Testing
+/phpunit.xml
+/.phpunit
+/coverage/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Composer
+composer.phar
+composer.lock
+
+# NPM
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Laravel specific
+/storage/
+/bootstrap/cache/*
+!/bootstrap/cache/empty.php
+!/bootstrap/cache/.gitkeep
+
+# Uploaded files
+/public/storage
+/storage/app/public/*
+!/storage/app/public/.gitkeep
+
+# Homestead
+.homestead/
+
+# Vagrant
+.vagrant/
+
+# Laravel specific
+*.env.*
+!.env.example

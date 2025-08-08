@@ -1,71 +1,162 @@
 # ISP Billing & CRM System
 
-A production-ready, multi-tenant ISP Billing & CRM application with domain-mapped company panels, MikroTik RouterOS (PPPoE) integration, POP management, reseller balance & commission system, SMS notifications, support token system, bulk customer import, and full automatic/manual billing management.
+A comprehensive multi-tenant ISP Billing & CRM application with MikroTik PPPoE integration, reseller management, POP management, SMS notifications, and full billing logic.
 
 ## Features
 
-### Multi-Tenancy & Super Admin
-- Super Admin portal (single top-level login)
-- Create/Edit/Delete Company panels (tenant)
-- Assign a custom domain/subdomain to each company (white-label)
-- Enable / Disable any company panel (re-enable later)
-- Configure per-company billing_day (default: 10)
-- See per-company summary: active customers, revenue, due, reseller stats
-- Global settings: default VAT, global packages (optional), global templates
+### Multi-Tenancy
+- Super Admin portal for managing company panels
+- Domain-mapped company panels (white-label)
+- Company-level billing configuration
+- Data isolation between tenants
 
-### Company Admin Panel
-- Roles & Permission Editor with default roles
-- POP / Zone Management
-- MikroTik Management
-- Package & Profile Management
-- Customer Management
-- Support / Token System
-- SMS Module
-- Reports & Accounting
-- Bandwidth Buy/Sell
-- Admin Tools
+### Customer Management
+- Customer CRUD operations
+- Package assignment and management
+- Customer types (home, free, vip, corporate)
+- Customer status management (active, inactive, suspended, expired)
+
+### Billing System
+- Automatic invoice generation on company billing day
+- Customer monthly billing with calendar-based calculations
+- Recharge types (RECEIVE for paid, DUE for unpaid extensions)
+- Auto-expiry actions based on customer type
+- Proration support for mid-cycle package changes
+
+### MikroTik Integration
+- Router management with encrypted credentials
+- PPPoE user creation, disabling, and deletion
+- Live session tracking and interface counters
+- Profile synchronization from RouterOS
+
+### Reseller System
+- Reseller balance management
+- Fund transfers between resellers and employees
+- Commission calculation and payout
+- Package visibility per reseller
+
+### SMS Notifications
+- Multiple SMS gateway support (HTTP GET/POST/JSON)
+- Message templating with variables
+- Auto-SMS triggers (welcome, invoice, payment success, expiry warning, suspension)
+- SMS logging and retry mechanism
+
+### Support System
+- Ticket creation and management
+- Token generation and assignment
+- Ticket escalation and assignment to staff
+
+### Reporting
+- Financial reports (revenue, invoices, payments)
+- Customer reports (active customers, churn)
+- Reseller commission reports
+- Usage statistics
+
+### Bulk Operations
+- CSV/XLS customer import with validation
+- Bulk date extension
+- Bulk package changes
+- Bulk customer enable/disable
 
 ## Tech Stack
-- Backend: Laravel (PHP 8.x)
-- Frontend: Vue 3 + Tailwind CSS (responsive)
-- Database: PostgreSQL
-- Queue: Redis + Laravel Queue
-- Auth: Laravel Sanctum or Passport
-- MikroTik client: routeros-api-php (RouterOS API)
-- PDF: barryvdh/laravel-dompdf
-- Excel/CSV: maatwebsite/excel
-- Role & Permission: spatie/laravel-permission
-- Containerization: Docker (Nginx + Supervisor)
-- Optional realtime: Laravel Echo + Pusher / Socket.io
 
-## Directory Structure
-For a complete overview of the directory structure, please refer to [DIRECTORY_STRUCTURE.md](DIRECTORY_STRUCTURE.md)
+### Backend
+- Laravel 8.x (PHP 8.x)
+- PostgreSQL database
+- Redis for caching and queue processing
+- Laravel Sanctum for API authentication
+- Spatie Laravel Permission for roles and permissions
 
-## Project Summary
-For a comprehensive summary of all files and directories created, please refer to [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)
+### Frontend
+- Vue 3 with Composition API
+- Tailwind CSS for styling
+- Pinia for state management
+- Vue Router for navigation
+
+### Infrastructure
+- Docker containerization (Nginx + Supervisor)
+- Laravel Mix for asset compilation
 
 ## Installation
 
-1. Clone the repository
-2. Run `composer install`
-3. Copy `.env.example` to `.env` and configure your environment
-4. Run `php artisan key:generate`
-5. Run `php artisan migrate`
-6. Start the development server with `php artisan serve`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/isp-billing-crm.git
+   cd isp-billing-crm
+   ```
 
-## Deployment
+2. Install PHP dependencies:
+   ```bash
+   composer install
+   ```
 
-For deployment instructions, please refer to [DEPLOYMENT.md](DEPLOYMENT.md)
+3. Install Node.js dependencies:
+   ```bash
+   npm install
+   ```
 
-## Requirements
-- PHP 8.0 or higher
-- PostgreSQL 13 or higher
-- Redis
-- Composer
-- Node.js and NPM
+4. Copy and configure the environment file:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Documentation
-For detailed documentation, please refer to the individual component files in the project directory.
+5. Configure your database and other settings in the `.env` file
+
+6. Run database migrations:
+   ```bash
+   php artisan migrate
+   ```
+
+7. Build frontend assets:
+   ```bash
+   npm run dev
+   # or for production
+   npm run prod
+   ```
+
+8. Start the development server:
+   ```bash
+   php artisan serve
+   ```
+
+## Docker Setup
+
+The application includes Docker configuration for easy deployment:
+
+1. Build and start containers:
+   ```bash
+   docker-compose up -d
+   ```
+
+2. Run migrations:
+   ```bash
+   docker-compose exec app php artisan migrate
+   ```
+
+3. Install dependencies:
+   ```bash
+   docker-compose exec app composer install
+   docker-compose exec node npm install
+   ```
+
+4. Build assets:
+   ```bash
+   docker-compose exec node npm run dev
+   ```
+
+## API Documentation
+
+The application provides a comprehensive REST API for integration with external systems. API documentation is available at `/api/documentation`.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
 
 ## License
-This project is licensed under the MIT License.
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

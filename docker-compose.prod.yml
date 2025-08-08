@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  nginx:
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src:/var/www/html:ro
+      - ./docker/nginx/nginx.prod.conf:/etc/nginx/nginx.conf
+      - ./storage/logs/nginx:/var/log/nginx
+      - ./storage/ssl:/etc/ssl/certs:ro
+    environment:
+      - VIRTUAL_HOST=*.example.com
+      - LETSENCRYPT_HOST=*.example.com
+      - LETSENCRYPT_EMAIL=admin@example.com
+
+  php:
+    volumes:
+      - ./src:/var/www/html:ro
+      - ./storage/logs/php:/var/log/php
+      - ./storage/app:/var/www/html/storage/app
+      - ./storage/framework:/var/www/html/storage/framework
+      - ./storage/logs:/var/www/html/storage/logs
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+
+  postgres:
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backups:/backups
+
+  redis:
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
