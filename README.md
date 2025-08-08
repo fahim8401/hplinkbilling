@@ -38,6 +38,12 @@ A production-ready, multi-tenant ISP Billing & CRM application with domain-mappe
 - Containerization: Docker (Nginx + Supervisor)
 - Optional realtime: Laravel Echo + Pusher / Socket.io
 
+## Directory Structure
+For a complete overview of the directory structure, please refer to [DIRECTORY_STRUCTURE.md](DIRECTORY_STRUCTURE.md)
+
+## Project Summary
+For a comprehensive summary of all files and directories created, please refer to [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)
+
 ## Installation
 
 1. Clone the repository
@@ -59,7 +65,7 @@ For deployment instructions, please refer to [DEPLOYMENT.md](DEPLOYMENT.md)
 - Node.js and NPM
 
 ## Documentation
-For detailed documentation, please refer to the individual component files in the `docs` directory.
+For detailed documentation, please refer to the individual component files in the project directory.
 
 ## License
-This project is licensed under the MIT License.# hplinkbilling
+This project is licensed under the MIT License.
